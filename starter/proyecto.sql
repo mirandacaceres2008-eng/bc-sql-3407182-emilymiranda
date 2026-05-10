@@ -1,6 +1,6 @@
 -- ============================================
 -- PROYECTO SEMANAL: DML — Manipulación de Datos
--- Semana 03 — INSERT INTO, UPDATE, DELETE
+-- Semana 04 — INSERT INTO, UPDATE, DELETE
 -- Dominio: Spa y Bienestar
 -- ============================================
 
