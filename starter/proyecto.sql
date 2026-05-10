@@ -1,6 +1,6 @@
 -- ============================================
--- PROYECTO SEMANAL: Operadores y Filtros
--- Semana 05 — BETWEEN, IN, LIKE
+-- PROYECTO SEMANAL: Funciones de Agregación
+-- Semana 06 — COUNT, SUM, AVG, GROUP BY, HAVING
 -- ============================================
 
 -- ============================================
@@ -84,49 +84,56 @@ VALUES
 (5, 5, 5, 5, 2);
 
 
--- NOTA: Usa el esquema cargado en la Semana 03.
--- Adapta los nombres de tablas y columnas a tu dominio.
+
+-- NOTA: Usa el esquema de tu Semana 03. Adapta nombres al dominio.
 
 -- ============================================
--- CONSULTA 1: Filtro con BETWEEN
+-- REPORTE 1: Totales globales
 -- ============================================
--- TODO: Filtra registros de tu entidad principal usando un rango
---       (precio, cantidad, fecha, id, etc.)
+-- TODO: Cuenta todos los registros y calcula suma/promedio
+--       de la columna numérica más relevante de tu dominio
 
-SELECT *
-FROM treatments
-WHERE price BETWEEN 90000 AND 150000;
+SELECT
+    COUNT(*) AS total_tratamientos,
+    SUM(price) AS suma_total,
+    AVG(price) AS promedio
+FROM treatments;
 
 
 -- ============================================
--- CONSULTA 2: Filtro con IN
+-- REPORTE 2: Extremos
 -- ============================================
--- TODO: Filtra por una lista de categorías, estados o ids relevantes
+-- TODO: Obtén el valor mínimo y máximo de la columna numérica
 
-SELECT *
+SELECT
+    MIN(price) AS minimo,
+    MAX(price) AS maximo
+FROM treatments;
+
+
+-- ============================================
+-- REPORTE 3: Subtotales por categoría (GROUP BY)
+-- ============================================
+-- TODO: Agrupa por la columna de categoría/tipo principal de tu dominio
+--       y calcula COUNT + AVG o SUM para cada grupo
+
+SELECT
+    specialty,
+    COUNT(*) AS total,
+    AVG(id) AS promedio
 FROM therapists
-WHERE specialty IN ('Masajes relajantes', 'Aromaterapia', 'Spa corporal');
+GROUP BY specialty
+ORDER BY total DESC;
 
 
 -- ============================================
--- CONSULTA 3: Búsqueda de texto con LIKE
+-- REPORTE 4: Filtro de grupos (HAVING)
 -- ============================================
--- TODO: Busca registros cuyo nombre o descripción contenga un patrón
+-- TODO: Muestra solo los grupos que superen un umbral de negocio
 
-SELECT *
-FROM treatments
-WHERE treatment_name LIKE '%Masaje%';
-
-
--- ============================================
--- CONSULTA 4: Filtro combinado (≥ 3 operadores)
--- ============================================
--- TODO: Combina BETWEEN, IN y/o LIKE con AND/OR
---       Usa paréntesis si mezclas AND y OR
-
-SELECT *
-FROM treatments
-WHERE price BETWEEN 90000 AND 180000
-  AND treatment_name LIKE '%Spa%'
-   OR id IN (1, 3, 5)
-ORDER BY price ASC;
+SELECT
+    therapist_id,
+    COUNT(*) AS total
+FROM packages
+GROUP BY therapist_id
+HAVING COUNT(*) > 0;
