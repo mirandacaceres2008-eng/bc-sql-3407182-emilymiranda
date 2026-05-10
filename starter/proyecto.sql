@@ -1,7 +1,6 @@
 -- ============================================
--- PROYECTO SEMANAL: DML — Manipulación de Datos
--- Semana 03 — INSERT INTO, UPDATE, DELETE
--- Dominio: Spa y Bienestar
+-- PROYECTO SEMANAL: Operadores y Filtros
+-- Semana 05 — BETWEEN, IN, LIKE
 -- ============================================
 
 -- ============================================
@@ -84,60 +83,50 @@ VALUES
 (4, 4, 4, 4, 6),
 (5, 5, 5, 5, 2);
 
-SELECT
-    id AS ID_Cliente,
-    full_name AS Nombre_Cliente,
-    phone AS Telefono,
-    email AS Correo
-FROM clients;
 
+-- NOTA: Usa el esquema cargado en la Semana 03.
+-- Adapta los nombres de tablas y columnas a tu dominio.
 
 -- ============================================
--- CONSULTA 2: Filtro por condición simple
+-- CONSULTA 1: Filtro con BETWEEN
 -- ============================================
--- TODO: Filtra filas usando una condición de igualdad o comparación
-
-SELECT *
-FROM clients
-WHERE id = 1;
-
-
--- ============================================
--- CONSULTA 3: Filtro combinado (AND u OR)
--- ============================================
--- TODO: Combina al menos dos condiciones con AND u OR
+-- TODO: Filtra registros de tu entidad principal usando un rango
+--       (precio, cantidad, fecha, id, etc.)
 
 SELECT *
 FROM treatments
-WHERE price > 100000
-  AND duration_minutes >= 50;
+WHERE price BETWEEN 90000 AND 150000;
 
 
 -- ============================================
--- CONSULTA 4: Top-N con ORDER BY + LIMIT
+-- CONSULTA 2: Filtro con IN
 -- ============================================
--- TODO: Recupera los 5 primeros registros según un criterio de negocio
+-- TODO: Filtra por una lista de categorías, estados o ids relevantes
+
+SELECT *
+FROM therapists
+WHERE specialty IN ('Masajes relajantes', 'Aromaterapia', 'Spa corporal');
+
+
+-- ============================================
+-- CONSULTA 3: Búsqueda de texto con LIKE
+-- ============================================
+-- TODO: Busca registros cuyo nombre o descripción contenga un patrón
 
 SELECT *
 FROM treatments
-ORDER BY price DESC
-LIMIT 5;
+WHERE treatment_name LIKE '%Masaje%';
 
 
 -- ============================================
--- CONSULTA 5: Paginación (página 1 y página 2)
+-- CONSULTA 4: Filtro combinado (≥ 3 operadores)
 -- ============================================
--- TODO: Implementa 2 páginas de 3 registros cada una
---       ordenados por un criterio relevante para tu dominio
+-- TODO: Combina BETWEEN, IN y/o LIKE con AND/OR
+--       Usa paréntesis si mezclas AND y OR
 
--- Página 1:
 SELECT *
-FROM clients
-ORDER BY full_name ASC
-LIMIT 3 OFFSET 0;
-
--- Página 2:
-SELECT *
-FROM clients
-ORDER BY full_name ASC
-LIMIT 3 OFFSET 3;
+FROM treatments
+WHERE price BETWEEN 90000 AND 180000
+  AND treatment_name LIKE '%Spa%'
+   OR id IN (1, 3, 5)
+ORDER BY price ASC;
