@@ -109,7 +109,7 @@ FROM servicios;
 
 # Comandos SQL Utilizados
 
-Durante el proyecto se utilizaron los siguientes comandos:
+Durante el proyecto se utilizaron los siguientes comandos :
 
 - CREATE TABLE
 - INSERT INTO
