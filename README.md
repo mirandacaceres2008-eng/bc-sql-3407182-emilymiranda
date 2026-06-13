@@ -1,175 +1,103 @@
-# Proyecto SQL SPA y Bienestar
+Proyecto SQL SPA — Semana-09 — JOINs
 
-## Descripción
 
-Este proyecto consiste en la creación de una base de datos básica para un sistema de SPA y Bienestar utilizando SQLite.
+Dominio: Spa y Bienestar
 
-Durante la actividad se crearon tablas para almacenar información de servicios y clientes, además de realizar consultas básicas para visualizar y organizar los datos.
+Descripción
 
-El objetivo fue aprender a:
+En esta actividad se aplicaron las operaciones INNER JOIN y LEFT JOIN para relacionar las tablas del dominio Spa y Bienestar. El objetivo fue generar reportes relacionales y detectar registros sin relaciones asociadas.
 
-- crear tablas
-- insertar registros
-- consultar información
-- ordenar resultados
-- contar registros
+Tecnologías utilizadas
 
----
+* SQLite
+* SQL
+* Visual Studio Code
+* Git y GitHub
 
-# Estructura de la Base de Datos
+Estructura de la base de datos
 
-La base de datos contiene 2 tablas principales.
+La base de datos está compuesta por cuatro tablas relacionadas mediante claves foráneas:
 
----
-
-## Tabla: servicios
-
-Almacena los servicios ofrecidos por el SPA.
-
-Campos:
-
-- id
-- nombre
-- precio
-- duracion
-
-Características:
-
-- PRIMARY KEY en id
-
----
-
-## Tabla: clientes
+clients
 
 Almacena la información de los clientes.
 
-Campos:
+* id
+* full_name
+* phone
+* email
+* notes
 
-- id
-- nombre
-- telefono
-- ciudad
+therapists
 
-Características:
+Contiene la información de los terapeutas.
 
-- PRIMARY KEY en id
+* id
+* full_name
+* specialty
 
----
+treatments
 
-# Inserción de Datos
+Guarda los tratamientos ofrecidos por el spa.
 
-Se insertaron registros en ambas tablas utilizando:
+* id
+* treatment_name
+* duration_minutes
+* price
+* description
 
-```sql
-INSERT INTO
-```
+packages
 
-Se agregaron:
+Representa los paquetes adquiridos por los clientes y relaciona las demás tablas mediante claves foráneas.
 
-- 5 servicios
-- 5 clientes
+* id
+* client_id
+* treatment_id
+* therapist_id
+* sessions
+* status
 
----
+Consultas realizadas
 
-# Consultas Realizadas
+Consulta 1: INNER JOIN principal
 
-## Mostrar servicios
+Se realizó un INNER JOIN entre las tablas clients y packages para mostrar únicamente los clientes que poseen paquetes registrados.
 
-Se realizó una consulta para visualizar todos los servicios registrados.
+Consulta 2: JOIN con tres tablas
 
-```sql
-SELECT id, nombre, precio, duracion
-FROM servicios;
-```
+Se relacionaron las tablas clients, packages, treatments y therapists para obtener un reporte con el nombre del cliente, el tratamiento recibido, el terapeuta encargado y la cantidad de sesiones.
 
----
+Consulta 3: LEFT JOIN
 
-## Ordenar nombres
+Se utilizó LEFT JOIN para mostrar todos los clientes, incluso aquellos que no tienen paquetes asociados.
 
-Se utilizó ORDER BY para ordenar alfabéticamente los nombres de los servicios.
+Consulta 4: Detección de registros huérfanos
 
-```sql
-SELECT nombre
-FROM servicios
-ORDER BY nombre;
-```
+Se aplicó un LEFT JOIN junto con la condición WHERE p.id IS NULL para identificar clientes sin paquetes registrados.
 
----
+Consulta 5: Reporte agregado
 
-## Contar servicios
+Se combinó LEFT JOIN, GROUP BY y COUNT para calcular la cantidad de paquetes asociados a cada cliente.
 
-Se utilizó COUNT para contar el total de servicios registrados.
+Conclusiones
 
-```sql
-SELECT COUNT(id) AS total_servicios
-FROM servicios;
-```
+Durante esta actividad se fortalecieron los conocimientos sobre relaciones entre tablas y el uso de JOINs en SQL. Además, se practicó la generación de reportes utilizando alias de tablas y columnas explícitas, evitando el uso de SELECT *.
 
----
+Aprendizajes obtenidos
 
-# Comandos SQL Utilizados
+A lo largo de esta práctica se aprendió a trabajar con bases de datos relacionales mediante el uso de consultas INNER JOIN y LEFT JOIN. También se comprendió la importancia de las claves foráneas para relacionar tablas y generar reportes más completos.
 
-Durante el proyecto se utilizaron los siguientes comandos :
+Se adquirieron habilidades para:
 
-- CREATE TABLE
-- INSERT INTO
-- SELECT
-- ORDER BY
-- COUNT
+* Relacionar múltiples tablas mediante JOINs.
+* Utilizar alias para mejorar la legibilidad de las consultas.
+* Detectar registros huérfanos utilizando LEFT JOIN y WHERE ... IS NULL.
+* Generar reportes agregados empleando GROUP BY y COUNT.
+* Aplicar buenas prácticas en SQL evitando el uso de SELECT * y especificando únicamente las columnas necesarias.
+* 
 
----
+Autor
 
-# Cómo ejecutar el proyecto
-
-## Paso 1
-
-Abrir la terminal en Visual Studio Code.
-
----
-
-## Paso 2
-
-Ejecutar SQLite:
-
-```bash
-sqlite3.exe
-```
-
----
-
-## Paso 3
-
-Abrir la base de datos:
-
-```sql
-.open mi_dominio.db
-```
-
----
-
-## Paso 4
-
-Ejecutar el archivo SQL:
-
-```sql
-.read proyecto.sql
-```
-
----
-
-# Aprendizajes
-
-Con este proyecto se aprendió a:
-
-- crear tablas en SQLite
-- insertar datos
-- realizar consultas básicas
-- ordenar resultados con ORDER BY
-- contar registros utilizando COUNT
-- trabajar con bases de datos en Visual Studio Code
-
----
-
-# Autor
-
-Emily Dayan Miranda Caceres
+Emily Dayan Miranda Cáceres
+Bootcamp: bc-fastapi
+Dominio: Spa y Bienestar
