@@ -1,5 +1,4 @@
-Proyecto SQL SPA — Semana-09 — JOINs
-
+Proyecto SQL SPA — Semana 09 — JOINs
 
 Dominio: Spa y Bienestar
 
@@ -77,7 +76,7 @@ Se aplicó un LEFT JOIN junto con la condición WHERE p.id IS NULL para identifi
 
 Consulta 5: Reporte agregado
 
-Se combinó LEFT JOIN, GROUP BY y COUNT para calcular la cantidad de paquetes asociados a cada cliente.
+Se combinaron LEFT JOIN, GROUP BY y COUNT para calcular la cantidad de paquetes asociados a cada cliente.
 
 Conclusiones
 
@@ -91,13 +90,15 @@ Se adquirieron habilidades para:
 
 * Relacionar múltiples tablas mediante JOINs.
 * Utilizar alias para mejorar la legibilidad de las consultas.
-* Detectar registros huérfanos utilizando LEFT JOIN y WHERE ... IS NULL.
+* Detectar registros huérfanos utilizando LEFT JOIN y WHERE … IS NULL.
 * Generar reportes agregados empleando GROUP BY y COUNT.
 * Aplicar buenas prácticas en SQL evitando el uso de SELECT * y especificando únicamente las columnas necesarias.
-* 
 
 Autor
 
 Emily Dayan Miranda Cáceres
-Bootcamp: bc-fastapi
+
+Bootcamp: BC-FastAPI
 Dominio: Spa y Bienestar
+
+Repositorio desarrollado como parte del proyecto de la Semana 09 — INNER JOIN y LEFT JOIN, aplicando consultas relacionales sobre una base de datos del dominio Spa y Bienestar.
