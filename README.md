@@ -1,25 +1,43 @@
-Proyecto SQL SPA — Semana 09 — JOINs
+# Proyecto SQL SPA y Bienestar — Semana 09 — JOINs
 
-Dominio: Spa y Bienestar
+## Descripción del proyecto
 
-Descripción
+En esta actividad se aplicaron las operaciones `INNER JOIN` y `LEFT JOIN` sobre el dominio **Spa y Bienestar** con el objetivo de relacionar diferentes tablas de la base de datos y generar consultas más completas y útiles para la gestión de la información.
 
-En esta actividad se aplicaron las operaciones INNER JOIN y LEFT JOIN para relacionar las tablas del dominio Spa y Bienestar. El objetivo fue generar reportes relacionales y detectar registros sin relaciones asociadas.
+El proyecto permite relacionar clientes, terapeutas, tratamientos y paquetes contratados, simulando el funcionamiento básico de un spa o centro de bienestar.
 
-Tecnologías utilizadas
+---
+
+## Objetivo
+
+Aplicar los conceptos de `INNER JOIN` y `LEFT JOIN` para:
+
+* Relacionar información entre varias tablas.
+* Obtener reportes combinando diferentes entidades del sistema.
+* Detectar registros sin relaciones asociadas.
+* Generar consultas agregadas utilizando `COUNT()`.
+
+---
+
+## Tecnologías utilizadas
 
 * SQLite
 * SQL
 * Visual Studio Code
-* Git y GitHub
+* Git
+* GitHub
 
-Estructura de la base de datos
+---
 
-La base de datos está compuesta por cuatro tablas relacionadas mediante claves foráneas:
+## Estructura de la base de datos
 
-clients
+La base de datos está compuesta por las siguientes tablas:
 
-Almacena la información de los clientes.
+### clients
+
+Almacena la información de los clientes del spa.
+
+Campos principales:
 
 * id
 * full_name
@@ -27,17 +45,21 @@ Almacena la información de los clientes.
 * email
 * notes
 
-therapists
+### therapists
 
-Contiene la información de los terapeutas.
+Contiene la información de los terapeutas y sus especialidades.
+
+Campos principales:
 
 * id
 * full_name
 * specialty
 
-treatments
+### treatments
 
-Guarda los tratamientos ofrecidos por el spa.
+Registra los tratamientos ofrecidos por el spa.
+
+Campos principales:
 
 * id
 * treatment_name
@@ -45,9 +67,11 @@ Guarda los tratamientos ofrecidos por el spa.
 * price
 * description
 
-packages
+### packages
 
-Representa los paquetes adquiridos por los clientes y relaciona las demás tablas mediante claves foráneas.
+Relaciona clientes, tratamientos y terapeutas mediante los paquetes contratados.
+
+Campos principales:
 
 * id
 * client_id
@@ -56,49 +80,52 @@ Representa los paquetes adquiridos por los clientes y relaciona las demás tabla
 * sessions
 * status
 
-Consultas realizadas
+---
 
-Consulta 1: INNER JOIN principal
+## Consultas realizadas
 
-Se realizó un INNER JOIN entre las tablas clients y packages para mostrar únicamente los clientes que poseen paquetes registrados.
+### Consulta 1 — INNER JOIN principal
 
-Consulta 2: JOIN con tres tablas
+Se relacionaron las tablas `packages` y `treatments` para mostrar los tratamientos incluidos en cada paquete y la cantidad de sesiones contratadas.
 
-Se relacionaron las tablas clients, packages, treatments y therapists para obtener un reporte con el nombre del cliente, el tratamiento recibido, el terapeuta encargado y la cantidad de sesiones.
+### Consulta 2 — JOIN con múltiples tablas
 
-Consulta 3: LEFT JOIN
+Se realizó una consulta utilizando cuatro tablas relacionadas (`clients`, `packages`, `treatments` y `therapists`) para obtener un reporte completo de clientes, tratamientos y terapeutas asignados.
 
-Se utilizó LEFT JOIN para mostrar todos los clientes, incluso aquellos que no tienen paquetes asociados.
+### Consulta 3 — LEFT JOIN
 
-Consulta 4: Detección de registros huérfanos
+Se utilizaron todos los tratamientos registrados, incluso aquellos que no tenían paquetes asociados.
 
-Se aplicó un LEFT JOIN junto con la condición WHERE p.id IS NULL para identificar clientes sin paquetes registrados.
+### Consulta 4 — Detección de registros huérfanos
 
-Consulta 5: Reporte agregado
+Se identificaron los tratamientos que no estaban asociados a ningún paquete utilizando `LEFT JOIN` y `WHERE ... IS NULL`.
 
-Se combinaron LEFT JOIN, GROUP BY y COUNT para calcular la cantidad de paquetes asociados a cada cliente.
+### Consulta 5 — Reporte agregado
 
-Conclusiones
+Se contó la cantidad de paquetes asociados a cada tratamiento utilizando `COUNT()` y `GROUP BY`.
 
-Durante esta actividad se fortalecieron los conocimientos sobre relaciones entre tablas y el uso de JOINs en SQL. Además, se practicó la generación de reportes utilizando alias de tablas y columnas explícitas, evitando el uso de SELECT *.
+---
 
-Aprendizajes obtenidos
+## Aprendizajes obtenidos
 
-A lo largo de esta práctica se aprendió a trabajar con bases de datos relacionales mediante el uso de consultas INNER JOIN y LEFT JOIN. También se comprendió la importancia de las claves foráneas para relacionar tablas y generar reportes más completos.
+Durante esta actividad aprendí a:
 
-Se adquirieron habilidades para:
+* Utilizar `INNER JOIN` para combinar registros relacionados.
+* Utilizar `LEFT JOIN` para incluir registros sin relación.
+* Detectar registros huérfanos mediante `IS NULL`.
+* Crear reportes utilizando funciones de agregación como `COUNT()`.
+* Diseñar consultas más complejas involucrando múltiples tablas.
 
-* Relacionar múltiples tablas mediante JOINs.
-* Utilizar alias para mejorar la legibilidad de las consultas.
-* Detectar registros huérfanos utilizando LEFT JOIN y WHERE … IS NULL.
-* Generar reportes agregados empleando GROUP BY y COUNT.
-* Aplicar buenas prácticas en SQL evitando el uso de SELECT * y especificando únicamente las columnas necesarias.
+---
 
-Autor
+## Conclusión
 
-Emily Dayan Miranda Cáceres
+La implementación de JOINs permitió obtener información más completa y organizada del sistema Spa y Bienestar. Estas consultas son fundamentales para generar reportes y facilitar la gestión de clientes, tratamientos y terapeutas dentro de una base de datos relacional.
 
-Bootcamp: BC-FastAPI
-Dominio: Spa y Bienestar
+---
 
-Repositorio desarrollado como parte del proyecto de la Semana 09 — INNER JOIN y LEFT JOIN, aplicando consultas relacionales sobre una base de datos del dominio Spa y Bienestar.
+## Autor
+
+**Emily Dayan Miranda Cáceres**
+
+Proyecto académico correspondiente a la **Semana 09 — INNER JOIN y LEFT JOIN**.
